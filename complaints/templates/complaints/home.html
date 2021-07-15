@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+{% block content%}
+{%load static%}
+
+<section class="hero">
+    <div class="background-image" style="background-image: url({%static 'jpis.jpg'%});"></div>
+    <div class="hero-content-area">
+      <h1>Hostel Complaint Manager</h1>
+      <h3>Welcome</h3>
+     </div>
+ </section>
+
+{%if user.is_authenticated%}
+{%if filled%}
+<div class="alert alert-success" role="alert">
+    Thank you for giving information.
+</div>
+{%endif%}
+<h3>Welcome, <span style='color:#007bff;'>{{request.user.username}}</span></h3>
+<br>
+<div class="row" style = "margin-left:200px;">
+    {%if request.user.user_profile.is_student == False%}
+     <div class="col-lg-6">
+       <h2>Manage Complaints</h2>
+       <p>Click below to manage complaints that students have registered </p>
+       <p><a class="btn btn-secondary" href="{%url 'detail_admin'%}" role="button">Complaints &raquo;</a></p>
+     </div><!-- /.col-lg-4 -->
+     <div class="col-lg-6">
+       <h2>Status</h2>
+       <p>Click to see the status of approved complaints</p>
+       <p><a class="btn btn-secondary" href="#" role="button">Go to Approved &raquo;</a></p>
+     </div><!-- /.col-lg-4 -->
+     {%else%}
+     <div  class="col-sm-5">
+       <h2>Register a complaint</h2>
+       <p>Click below to register a complaint </p>
+       <p><a class="btn btn-secondary" href="{%url 'create' %}" role="button">Register a Complaint &raquo;</a></p>
+     </div><!-- /.col-lg-4 -->
+     <div class="col-sm-5">
+       <h2>Status</h2>
+       <p>Click to see the status of your complaints</p>
+       <p><a class="btn btn-secondary" href="{%url 'detail'%}" role="button">Go to Your Complaints &raquo;</a></p>
+     </div><!-- /.col-lg-4 -->
+     {%endif%}
+   </div><!-- /.row -->
+   <div style = "margin-left:50px;"class="container-fluid">
+       <img src="{%static 'welcome_cats.svg'%}" alt="">
+   </div>
+{%else%}
+<div class="alert alert-warning" role="alert">
+  Please sign up or login to add information
+</div>{%endif%}
+
+{%endblock%}

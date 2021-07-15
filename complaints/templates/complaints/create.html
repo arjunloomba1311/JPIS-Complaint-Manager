@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+{%block content%}
+{%load static%}
+{%if error%}
+<div class="alert alert-warning" role="alert">
+{{error }}
+</div>
+<br>
+<br>
+{%endif%}
+<div class="container-fluid row">
+    <div class="col-4">
+
+
+        <form  action="{%url 'create'%}" enctype = "multipart/form-data" method="POST">
+        <!-- This enctype helps us add different kinds of data -->
+        {%csrf_token %}
+        <strong>Title </strong>
+        <br>
+        <div class="form-group">
+            <input class="form-control" type="text" name="title">
+        </div>
+        <br>
+        <strong>Description </strong>
+        <br>
+        <div class="input-group">
+            <input class="form-control" type="textbox" name="description" style = "height:100px;">
+        </div>
+        <br>
+        <strong>Room No. </strong>
+        <br>
+        <input class="form-control" type="Integer" name="room_no">
+        <br>
+        <strong> Select Issue Type </strong>
+        <br>
+        <select class="form-control form-select" type = "Integer" aria-label="Default select example" name="issue_type">
+            <option value="1">Bathroom</option>
+            <option value="2">Common Room</option>
+            <option value="3">Electricity</option>
+            <option value="4">furniture</option>
+            <option value="5">food</option>
+            <option value="6">Other</option>
+        </select>
+        <br>
+        <strong>An image of the complaint</strong>
+        <br>
+        <input class = "form-select" type="file" name="image">
+        <br>
+        <br>
+        <input type="submit" name="" value="Submit Complaint" class = "btn btn-primary">
+        </form>
+    </div>
+    <div class="col-8">
+        <img src="{%static "create.svg" %}" alt="">
+    </div>
+
+</div>
+
+<br>
+<br>
+
+{%endblock%}

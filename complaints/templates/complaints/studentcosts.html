@@ -1,0 +1,78 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+
+<div class="container-fluid">
+      <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="{%url 'detail'%}">
+                    <span data-feather="home"></span>
+                   Student Dashboard <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{%url 'costs'%}">
+                    <span data-feather="shopping-cart"></span>
+                    Complaint Costs
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{%url 'history'%}">
+                    <span data-feather="users"></span>
+                    Complaint History
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+              <h1 class="h2">Student Dashboard</h1>
+            </div>
+            <div class="my-3 p-3 bg-white rounded box-shadow" class="list-group">
+                <h6 class="border-bottom border-gray pb-2 mb-0"> <span style="color:#007bff;">{{request.user}},</span> This is the average cost for each complaint</h6>
+                <br>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Issue Type </th>
+                            <th scope="col">Cost </th>
+                        </tr>
+                    </thead>
+                        <tr>
+                            <td> Bathroom </td>
+                            <td> 300 rupees </td>
+                        </tr>
+                        <tr>
+                            <td> Common Room </td>
+                            <td> 500 rupees </td>
+                        </tr>
+                        <tr>
+                            <td> Electricity </td>
+                            <td> 200 rupees </td>
+                        </tr>
+                        <tr>
+                            <td> Furniture </td>
+                            <td> 500 rupees </td>
+                        </tr>
+                        <tr>
+                            <td> Food </td>
+                            <td> 800 rupees </td>
+                        </tr>
+                        <tr>
+                            <td> Other </td>
+                            <td> 600 rupees </td>
+                        </tr>
+                </table>
+
+            </div>
+         </main>
+    </div>
+</div>
+
+{%endblock%}

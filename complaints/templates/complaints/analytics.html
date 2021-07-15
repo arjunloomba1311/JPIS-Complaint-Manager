@@ -1,0 +1,142 @@
+{%extends 'base.html'%}
+{%block content%}
+{%load static%}
+
+<div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="{%url 'detail_admin'%}">
+                  <span data-feather="home"></span>
+                 Admin Dashboard <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'mail_sent'%}">
+                  <span data-feather="file"></span>
+                  Complaints sent
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'analytics_system'%}">
+                  <span data-feather="bar-chart-2"></span>
+                  Complaint Analytics
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'admin_costs'%}">
+                  <span data-feather="shopping-cart"></span>
+                  Complaint Costs
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="archive"></span>
+                  Complaint Archives
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Admin Dashboard</h1>
+          </div>
+          <div class="my-3 p-3 bg-white rounded box-shadow" class="list-group">
+              <h6 class="border-bottom border-gray pb-2 mb-0"> Analytics based on Complaints recorded</h6>
+              <div class="container-fluid media pt-3">
+                  <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" style ="height:150px;" alt="" class="mr-2 rounded">
+                <div class="col-lg-5">
+                  <div class="card" style="width: 18rem;">
+                    <img src="{%static 'common.svg'%}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Most Common Complaint Recorded</h5>
+                      <p class="card-text">The most common complaint is of the type: <strong>{{most_common}}</strong> </p>
+                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                  </div>
+              </div>
+              <br>
+              <div class="col-lg-5">
+                  <div class="card" style="width: 18rem;">
+                    <img src="{%static 'reject.svg'%}" style ="height:200px;" class="card-img-top" alt="...">
+                    <div class="card-body" style ="height:150px;">
+                      <h5 class="card-title">Most Common Rejected Complaint</h5>
+                      <p class="card-text">The most common rejected complaint is of type: <strong>{{most_rej}}</strong> </p>
+                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                  </div>
+              </div>
+              <div class="col-lg-5">
+                  <div class="card" style="width: 18rem;">
+                    <img src="{%static 'accepted.svg'%}" style ="height:200px;" class="card-img-top" alt="...">
+                    <div class="card-body" style ="height:150px;">
+                      <h5 class="card-title">Most Common Accepted Complaint</h5>
+                      <p class="card-text">The most common Accepted complaint is of type: <strong>{{most_accept}}</strong> </p>
+                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                  </div>
+              </div>
+        </div>
+
+
+<br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">0</th>
+          <th scope="col">1</th>
+          <th scope="col">2</th>
+          <th scope="col">3</th>
+          <th scope="col">4</th>
+          <th scope="col">5</th>
+          <th scope="col">6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>None</td>
+          <td>Bathroom</td>
+          <td>Common Room</td>
+          <td>Electricty</td>
+          <td>Furniture</td>
+          <td>Food</td>
+          <td>Other</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/2.3.0/bokeh.min.js"></script>
+
+
+        {{ div | safe }}
+        {{ script | safe }}
+
+        <div class="card">
+          <div class="card-body" style ="height:150px;">
+            <h5 class="card-title">The worst handled complaints according to the user: </h5>
+            <p class="card-text">  <strong>Bathroom </strong></p>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          </div>
+
+
+    </main>
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{%endblock%}

@@ -1,0 +1,116 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+{%if error%}
+<div class="alert alert-warning" role="alert">
+{{error}}
+</div>
+{%elif success%}
+<div class="alert alert-success" role="alert">
+{{success}}
+</div>
+<br>
+{%endif%}
+
+<div class="container-fluid">
+      <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="{%url 'detail'%}">
+                    <span data-feather="home"></span>
+                   Student Dashboard <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{%url 'costs'%}">
+                    <span data-feather="shopping-cart"></span>
+                    Complaint Costs
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{%url 'history'%}">
+                    <span data-feather="users"></span>
+                    Complaint History
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+              <h1 class="h2">Student Dashboard</h1>
+            </div>
+            <div class="my-3 p-3 bg-white rounded box-shadow" class="list-group">
+                <h6 class="border-bottom border-gray pb-2 mb-0"> <span style="color:#007bff;">{{request.user}},</span> This is the status of your complaints</h6>
+                {%for info in info_objs%}
+                <div class="text-muted pt-3">
+                    <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+                    <h5  style = "font-size = '2em';" class="d-block text-gray-dark"><strong>{{info.title}}</strong> </h5>
+                    <p>{{info.description}}</p>
+                    <p><strong>Date Published: </strong>{{info.pub_date_pretty}}</p>
+                    <p><strong>Student room number:  </strong>{{info.room_no}}</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{info.image.url}}" class = "img-fluid" alt="Not working">
+                </div>
+                <div class="text-muted pt-3">
+                    {%if info.approved%}
+                    <p><strong>The status of your comlaint is:</strong> <span style= "color: #00ff00;">Approved</p>
+                    <small>Required personel will tend to your complaint</small>
+                    {%elif info.rejected%}
+                    <p><strong>The status of your comlaint is: </strong> <span style= "color: #ff0000;">rejected</span> </p>
+                    <small>Contact your administrator for more info</small>
+                    {%else%}
+                    <p><strong>The status of your complaint is: </strong> <span style= "color: #ffa500;"> Pending </span> (Hang in there!)</p>
+                    {%endif%}
+                    <strong>Rate the handling of this complaint: </strong>
+                    <label for="">This will help us improve our analytics system</label>
+                    <form  action="{%url 'rate' info.id%}" enctype = "multipart/form-data" method="POST">
+                        {%csrf_token %}
+                        <div class="row">
+                            <div class="input-group col-6 mb-3">
+                              <!-- <span class="input-group-text" id="basic-addon3">Rate our handling of your complaint</span> -->
+                              <input name = "rate" type="Integer" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Between 0 to 10">
+                            </div>
+                            <div class="col-6">
+                                <input type="submit" name="" value="Submit Rating" class = "btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                    <button type="button" class="btn btn-dark">current rating: {{info.rating}}</button>
+                    <br>
+                    <br>
+                    <a href="javascript:{document.getElementById('delete').submit()}">
+                        <button type="button" class="btn btn-danger">Delete this complaint</button>
+                        <br>
+                    </a>
+                    <br>
+                    <hr>
+
+
+                </div>
+             </div>
+         </main>
+     </div>
+</div>
+
+
+
+<form id = 'delete' action="{%url 'delete' info.id%}" method="POST">
+    {%csrf_token %}
+    <input type="hidden">
+</form>
+
+
+<br>
+<br>
+<br>
+<br>
+
+{%endfor%}
+
+
+{%endblock%}

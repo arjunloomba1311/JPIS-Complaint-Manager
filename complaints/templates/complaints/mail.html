@@ -1,0 +1,81 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="{%url 'detail_admin'%}">
+                  <span data-feather="home"></span>
+                 Admin Dashboard <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'mail_sent'%}">
+                  <span data-feather="file"></span>
+                  Complaints sent
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'analytics_system'%}">
+                  <span data-feather="bar-chart-2"></span>
+                  Complaint Analytics
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'admin_costs'%}">
+                  <span data-feather="shopping-cart"></span>
+                  Complaint Costs
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="archive"></span>
+                  Complaint Archives
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Admin Dashboard</h1>
+          </div>
+          <div class="my-3 p-3 bg-white rounded box-shadow" class="list-group">
+              <h6 class="border-bottom border-gray pb-2 mb-0"> Complaints Sent to personel to handle</h6>
+              {%for complaint in complaint_objs%}
+              {%if complaint.mail_sent == True%}
+              <div class="media text-muted pt-3">
+                  <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+                  <a style = "text-decoration: none; color: black;"onclick = "window.location = '{%url 'specific' complaint.id %}'"href="#" class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray list-group-item">
+                      <strong class="d-block text-gray-dark">{{complaint.title}}</strong>
+                      {{complaint.description_short}}
+                      <br>
+                      <small>{{complaint.pub_date_pretty}}</small>
+                      <small style = "margin: 10px;">By: {{complaint.hunter.email}}</small>
+                      <small style = "margin: 10px;">Room No. {{complaint.room_no}}</small>
+                      <br>
+                      {%if complaint.approved == True%}
+                      <small>Status: <span style ="color:#28a745;"> Approved </span></small>
+                      {%elif complaint.rejected == True%}
+                      <small>Status: <span style = "color:#dc3545"> Rejected </span> </small>
+                      {%elif complaint.pending == True%}
+                      <small>Status: <span style ="color:#007bff"> Pending </span> </small>
+                      {%endif%}
+                      <br>
+                      {%if complaint.fixed == True%}
+                      <small>Fixed: <span style ="color:#28a745;"> Yes </span></small>
+                      {%else%}
+                      <small>Fixed: <span style = "color:#dc3545"> Not Yet </span> </small>
+                      {%endif%}
+                  </a>
+              </div>
+              {%endif%}
+              {%endfor%}
+           </div>
+        </main>
+    </div>
+</div>
+{%endblock%}

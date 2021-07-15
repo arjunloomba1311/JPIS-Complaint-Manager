@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block content%}
+{%load static%}
+
+
+<div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="{%url 'detail_admin'%}">
+                  <span data-feather="home"></span>
+                 Admin Dashboard <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'mail_sent'%}">
+                  <span data-feather="file"></span>
+                  Complaints sent
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'analytics_system'%}">
+                  <span data-feather="bar-chart-2"></span>
+                  Complaint Analytics
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'admin_costs'%}">
+                  <span data-feather="shopping-cart"></span>
+                  Complaint Costs
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="archive"></span>
+                  Complaint Archives
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Admin Dashboard</h1>
+          </div>
+          <div class="my-3 p-3 bg-white rounded box-shadow" class="list-group">
+              <h6 class="border-bottom border-gray pb-2 mb-0"> Average costs of complaints </h6>
+        </main>
+    </div>
+</div>
+{%endblock%}
