@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{%block content%}
+{%load static%}
+{% if error %}
+<div class="alert alert-warning" role="alert">
+{{error }}
+</div>
+
+<br>
+<br>
+{%endif%}
+
+<h2>Please Login</h2>
+<div class="row">
+    <div class="col-4">
+        <form class = "form-signin" action="{%url 'login'%}" method="POST">
+            {%csrf_token %}
+            <label for="inputEmail" class="sr-only"> Username/ Email</label>
+            <br>
+            <input name = "username" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+            <br>
+            <input type="password" name = "password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <br>
+            <br>
+            <input type="submit" name="" value="Login" class = "btn btn-lg btn-primary btn-block">
+        </form>
+        <br>
+        <p>Not signed up yet? <a href="{% url 'signup'%}"> Sign up now!</a> </p>
+    </div>
+    <div class="col-6">
+        <img src=" {%static "login.svg" %}" alt="">
+    </div>
+
+</div>
+
+<br>
+<br>
+<br>
+
+{%endblock%}
