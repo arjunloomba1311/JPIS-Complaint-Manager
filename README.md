@@ -15,7 +15,7 @@ There are several crucial features such as but not limited to:
 
 -------------------------------------------
 
-A video demo of the system may be found at:
+A video demo of the system may be found at :
 https://drive.google.com/drive/folders/1grQKeAIEenQsYQtHguFqweVPdvfL_rSH?usp=sharing
 
 -------------------------------------------
