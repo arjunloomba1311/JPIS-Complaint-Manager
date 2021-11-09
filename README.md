@@ -26,4 +26,4 @@ Front-End: Javascript, Jquery, HTML, CSS (bootstrap)
 Backend: Django (Python based web framework)
 Database: PostgreSQL (object relational database with support available for interacting with Django Backend)
 
-
+![This is an image](https://github.com/arjunloomba1311/JPIS-Complaint-Manager/blob/main/complain_manager/static/login.svg)
